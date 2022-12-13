@@ -1,0 +1,7 @@
+jupyterlab
+jsonlines
+# For local development
+doppler-env
+# Google Cloud Services
+google-cloud-bigquery
+google-cloud-storage
