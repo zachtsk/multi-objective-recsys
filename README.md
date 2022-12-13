@@ -42,3 +42,19 @@ Each `session` and `type` combination should appear on its own `session_type` ro
 
 * Big data processing
 * Training for multiple objectives
+
+# Approach
+
+### Environment Variable Management
+
+[**Doppler**](https://www.doppler.com/) is a secret management tool that can be used to securely store, manage, and rotate secrets for applications and services. It provides a central, secure location for storing sensitive information, such as passwords, tokens, and keys, and allows you to easily access and manage these secrets from your applications and services.
+
+1. Create a [new Doppler project](https://docs.doppler.com/docs/create-project)
+2. Create a `GOOGLE_APPLICATION_CREDENTIALS` secret which contains the path to your Google Cloud Credentials (e.g. `C:/users/...`)
+3. Save your changes
+4. Instantiate Doppler in your repo root directory `doppler setup`
+5. Set up [VSCode](https://docs.doppler.com/docs/vscode-python) or [PyCharm](https://docs.doppler.com/docs/pycharm) (e.g. using `DOPPLER_ENV=1`) to use your Doppler secrets
+
+### BigData Handling
+
+1. Create a Google Cloud bucket
