@@ -1,7 +1,17 @@
+# Notebooks
 jupyterlab
 jsonlines
+
+# Data analysis
+pandas
+numpy
+matplotlib
+gensim
+scikit-learn
+
 # For local development
 doppler-env
+
 # Google Cloud Services
 google-cloud-bigquery
 google-cloud-storage
