@@ -1,13 +1,21 @@
+# ## GPU Dependencies
+# conda create -n gpu python=3.9
+# conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+
 # Notebooks
 jupyterlab
 jsonlines
 
 # Data analysis
+pyarrow
 pandas
 numpy
 matplotlib
 gensim
 scikit-learn
+tensorflow<2.11
+tensorflow_io
+merlin-dataloader==0.0.2
 
 # For local development
 doppler-env
