@@ -16,5 +16,3 @@ COPY brain /app/brain
 # Install python package as editable
 COPY setup.* .
 RUN pip install -e .
-
-WORKDIR /app/brain
