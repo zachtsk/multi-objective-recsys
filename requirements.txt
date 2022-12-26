@@ -15,10 +15,11 @@ gensim
 scikit-learn
 tensorflow<2.11
 tensorflow_io
-merlin-dataloader==0.0.2
+#merlin-dataloader==0.0.2
 
 # For local development
 doppler-env
+black[d]
 
 # Google Cloud Services
 google-cloud-bigquery

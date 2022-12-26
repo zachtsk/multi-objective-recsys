@@ -2,4 +2,5 @@
 data/
 venv/
 **.egg**
+**.ipynb_checkpoints**
 *.pyc

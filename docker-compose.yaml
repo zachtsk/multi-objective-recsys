@@ -1,0 +1,15 @@
+version: '3'
+services:
+  pyspark:
+    image: gcr.io/txt-save-dev/multi-obj-spark:v1.0
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: pyspark
+    volumes:
+      - ./data:/app/data
+      - ./brain:/app/brain
+      - ./notebooks:/app/notebooks
+    working_dir: /app
+    ports:
+      - 8889:8888
