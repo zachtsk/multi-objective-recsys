@@ -5,7 +5,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql import functions as F, Window as W
 from pyspark.sql.types import StructType, StructField, StringType, LongType, IntegerType
 
-from brain.config import Config, LocalConfig, GoogleCloudConfig
+from otto.config import Config, LocalConfig, GoogleCloudConfig
 
 # Create a SparkSession
 spark = SparkSession.builder.appName("otto").getOrCreate()

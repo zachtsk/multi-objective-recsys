@@ -10,8 +10,8 @@ RUN pip install pyspark
 WORKDIR /app
 
 # Move into app directory
-RUN mkdir -p brain
-COPY brain /app/brain
+RUN mkdir -p otto
+COPY otto /app/otto
 
 # Install python package as editable
 COPY setup.* .
