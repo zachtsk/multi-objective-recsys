@@ -24,6 +24,7 @@ class Config:
     train_fp: str
     test_fp: str
 
+
 @dataclass
 class LocalConfig:
     #########################
@@ -45,10 +46,12 @@ class LocalConfig:
     train_fp: str = str(data_dir / "train.parquet")
     test_fp: str = str(data_dir / "test.parquet")
 
+
 @dataclass
 class GoogleCloudConfig:
     # Source/ files
-    data_dir: str = "gs://zachtsk-kaggle/multi-obj-recsys"
+    # TODO: change the default bucket path
+    data_dir: str = os.getenv("GCP_DATA_BUCKET", "gs://zachtsk-kaggle/multi-obj-recsys")
     train_jsonl_fp: str = os.path.join(data_dir, "train.jsonl")
     test_jsonl_fp: str = os.path.join(data_dir, "test.jsonl")
 
