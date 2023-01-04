@@ -55,6 +55,14 @@ class GoogleCloudConfig:
     train_jsonl_fp: str = os.path.join(data_dir, "train.jsonl")
     test_jsonl_fp: str = os.path.join(data_dir, "test.jsonl")
 
+    #########################
+    # Normalized Files
+    #########################
+    # Sample Size
+    size_sm: int = 1_000
+    size_med: int = 10_000
+    size_lg: int = 100_000
+
     # Sample size from source file
-    train_sample_fp: str = os.path.join(data_dir, "train_sample.parquet")
-    test_sample_fp: str = os.path.join(data_dir, "test_sample.parquet")
+    train_fp: str = os.path.join(data_dir, "train.parquet")
+    test_fp: str = os.path.join(data_dir, "test.parquet")
