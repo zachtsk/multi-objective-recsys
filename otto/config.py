@@ -20,7 +20,7 @@ class Config:
     size_med: int
     size_lg: int
 
-    # Output Files
+    # Output files
     train_fp: str
     test_fp: str
 
@@ -42,7 +42,7 @@ class LocalConfig:
     size_med: int = 10_000
     size_lg: int = 100_000
 
-    # Output Files
+    # Output files
     train_fp: str = str(data_dir / "train.parquet")
     test_fp: str = str(data_dir / "test.parquet")
 
@@ -51,7 +51,7 @@ class LocalConfig:
 class GoogleCloudConfig:
     # Source/ files
     # TODO: change the default bucket path
-    data_dir: str = os.getenv("GCP_DATA_BUCKET", "gs://zachtsk-kaggle/multi-obj-recsys")
+    data_dir: str = os.getenv("GCP_DATA_BUCKET", "gs://otto-dataproc-gpu/multi-obj-recsys")
     train_jsonl_fp: str = os.path.join(data_dir, "train.jsonl")
     test_jsonl_fp: str = os.path.join(data_dir, "test.jsonl")
 
@@ -63,6 +63,6 @@ class GoogleCloudConfig:
     size_med: int = 10_000
     size_lg: int = 100_000
 
-    # Sample size from source file
+    # Output files
     train_fp: str = os.path.join(data_dir, "train.parquet")
     test_fp: str = os.path.join(data_dir, "test.parquet")
