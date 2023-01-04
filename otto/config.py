@@ -51,7 +51,7 @@ class LocalConfig:
 class GoogleCloudConfig:
     # Source/ files
     # TODO: change the default bucket path
-    data_dir: str = os.getenv("GCP_DATA_BUCKET", "gs://otto-dataproc-gpu/multi-obj-recsys")
+    data_dir: str = os.getenv("GCP_DATA_BUCKET", "gs://otto-dataproc-gpu/otto/data")
     train_jsonl_fp: str = os.path.join(data_dir, "train.jsonl")
     test_jsonl_fp: str = os.path.join(data_dir, "test.jsonl")
 
