@@ -57,7 +57,7 @@ def make_explode_events(df):
             "session",
             F.col("events.aid").alias("aid"),
             F.col("events.ts").alias("ts"),
-            F.col("events.event").alias("event"),
+            F.col("events.event").alias("event_type"),
         )
     )
 
@@ -117,7 +117,20 @@ def normalize_data(config: Config, train_test: str, sample_size: int = None):
 
     # Normalize operation
     df = make_explode_events(df)
+
+    # Get datetime from timestamp value
+    df = df.withColumn("ds", F.expr("cast(ts/1000 as timestamp)"))
+
+    # Create event ID
+    df = df.withColumn("event", F.expr("""
+            case 
+                when event_type = 'clicks' then 1 
+                when event_type = 'carts'  then 2 
+                when event_type = 'orders' then 3 
+            end"""))
+
     df.write.parquet(out_fp, mode="overwrite")
+
 
 
 def main():
