@@ -45,6 +45,7 @@ class LocalConfig:
     # Output files
     train_fp: str = str(data_dir / "train.parquet")
     test_fp: str = str(data_dir / "test.parquet")
+    eval_fp: str = str(data_dir / "eval.parquet")
 
 
 @dataclass
@@ -66,3 +67,4 @@ class GoogleCloudConfig:
     # Output files
     train_fp: str = os.path.join(data_dir, "train.parquet")
     test_fp: str = os.path.join(data_dir, "test.parquet")
+    eval_fp: str = os.path.join(data_dir, "eval.parquet")
