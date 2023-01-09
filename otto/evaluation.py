@@ -28,7 +28,7 @@ def create_evaluation_set(config: Config):
     # - Latest 20 cart events
     # - Latest 20 order events
     latest_events = W.partitionBy("session", "event_type").orderBy(F.desc("ts"), F.rand())
-    evaluate = (
+    output = (
         test
         .withColumn("click_order", F.count("*").over(latest_events))
         .where("""
@@ -38,7 +38,7 @@ def create_evaluation_set(config: Config):
         """)
         .select("session", "event_type", "aid", "ts", F.lit("evaluation").alias("set"))
     )
-    evaluate.write.parquet(config.eval_fp, mode="overwrite")
+    output.write.parquet(config.eval_fp, mode="overwrite")
 
 
 def evaluate(df_answers, df_test):
