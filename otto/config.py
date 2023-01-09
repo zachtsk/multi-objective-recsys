@@ -23,6 +23,7 @@ class Config:
     # Output files
     train_fp: str
     test_fp: str
+    eval_fp: str
 
 
 @dataclass
