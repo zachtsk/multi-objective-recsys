@@ -25,7 +25,7 @@ class Config:
     test_fp: str
     eval_fp: str
     features_fp: str
-    click_embed: str
+    click_embed_fp: str
     item_embed_fp: str
     user_embed_fp: str
     model_fp: str
@@ -54,7 +54,7 @@ class LocalConfig:
     test_fp: str = str(data_dir / "test.parquet")
     eval_fp: str = str(data_dir / "eval.parquet")
     features_fp: str = str(data_dir / "features.parquet")
-    click_embed: str = str(data_dir / "click_embedding.parquet")
+    click_embed_fp: str = str(data_dir / "click_embedding.parquet")
     item_embed_fp: str = str(data_dir / "item_embedding.parquet")
     user_embed_fp: str = str(data_dir / "user_embedding.parquet")
     model_fp: str = str(data_dir / "als.model")
@@ -84,6 +84,6 @@ class GoogleCloudConfig:
     features_fp: str = os.path.join(data_dir, "features.parquet")
     item_embed_fp: str = os.path.join(data_dir, "item_embedding.parquet")
     user_embed_fp: str = os.path.join(data_dir, "user_embedding.parquet")
-    click_embed: str = os.path.join(data_dir, "click_embedding.parquet")
+    click_embed_fp: str = os.path.join(data_dir, "click_embedding.parquet")
     model_fp: str = os.path.join(data_dir, "als.model")
     nn_model_fp: str = os.path.join(data_dir, "neighbor.model")
