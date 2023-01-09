@@ -54,7 +54,7 @@ class LocalConfig:
     click_embed: str = str(data_dir / "click_embedding.parquet")
     item_embed_fp: str = str(data_dir / "item_embedding.parquet")
     user_embed_fp: str = str(data_dir / "user_embedding.parquet")
-    model_fp: str = str(data_dir / "model.als")
+    model_fp: str = str(data_dir / "als.model")
 
 
 @dataclass
@@ -80,4 +80,4 @@ class GoogleCloudConfig:
     item_embed_fp: str = os.path.join(data_dir, "item_embedding.parquet")
     user_embed_fp: str = os.path.join(data_dir, "user_embedding.parquet")
     click_embed: str = os.path.join(data_dir, "click_embedding.parquet")
-    model_fp: str = os.path.join(data_dir, "model.als")
+    model_fp: str = os.path.join(data_dir, "als.model")
