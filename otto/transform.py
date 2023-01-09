@@ -156,7 +156,6 @@ def normalize_data(config: Config, train_test: str, sample_size: int = None):
     df.write.parquet(out_fp, mode="overwrite")
 
 
-
 def main():
     """
     Command line tool for running data engineering jobs
