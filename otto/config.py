@@ -37,9 +37,9 @@ class LocalConfig:
     #########################
     # Source files
     #########################
-    data_dir: str = Path(__file__).parent.parent / "data"
-    train_jsonl_fp: str = str(data_dir / "train.jsonl")
-    test_jsonl_fp: str = str(data_dir / "test.jsonl")
+    data_dir: str = str(Path(__file__).parent.parent / "data")
+    train_jsonl_fp: str = os.path.join(data_dir, "train.jsonl")
+    test_jsonl_fp: str = os.path.join(data_dir, "test.jsonl")
 
     #########################
     # Normalized Files
@@ -50,15 +50,15 @@ class LocalConfig:
     size_lg: int = 100_000
 
     # Output files
-    train_fp: str = str(data_dir / "train.parquet")
-    test_fp: str = str(data_dir / "test.parquet")
-    eval_fp: str = str(data_dir / "eval.parquet")
-    features_fp: str = str(data_dir / "features.parquet")
-    click_embed_fp: str = str(data_dir / "click_embedding.parquet")
-    item_embed_fp: str = str(data_dir / "item_embedding.parquet")
-    user_embed_fp: str = str(data_dir / "user_embedding.parquet")
-    model_fp: str = str(data_dir / "als.model")
-    nn_model_fp: str = str(data_dir / "neighbor.model")
+    train_fp: str = os.path.join(data_dir, "train.parquet")
+    test_fp: str = os.path.join(data_dir, "test.parquet")
+    eval_fp: str = os.path.join(data_dir, "eval.parquet")
+    features_fp: str = os.path.join(data_dir, "features.parquet")
+    item_embed_fp: str = os.path.join(data_dir, "item_embedding.parquet")
+    user_embed_fp: str = os.path.join(data_dir, "user_embedding.parquet")
+    click_embed_fp: str = os.path.join(data_dir, "click_embedding.parquet")
+    model_fp: str = os.path.join(data_dir, "als.model")
+    nn_model_fp: str = os.path.join(data_dir, "neighbor.model")
 
 
 @dataclass
