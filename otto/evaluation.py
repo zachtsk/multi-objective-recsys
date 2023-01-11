@@ -44,7 +44,7 @@ def create_evaluation_set(config: Config):
 def evaluate(df_answers, df_test):
     return (
         df_answers
-        .join(df_test, on=["session", "event_type", "aid"], how="left")
+        .join(df_test.withColumn("hit", F.lit(1)), on=["session", "event_type", "aid"], how="left")
         .withColumn("hit", F.expr("greatest(hit,0)"))
         .agg(
             F.expr(
