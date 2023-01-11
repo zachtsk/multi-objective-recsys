@@ -35,14 +35,14 @@ def create_als_training(config: Config):
         seed=100,
     )
     als = als.fit(als_train)
-    als.write().overwrite().save(config.model_fp)
+    als.write().overwrite().save(config.als_model_fp)
 
 
 def load_als_model(config: Config) -> ALSModel:
     try:
-        als = ALSModel.load(config.model_fp)
+        als = ALSModel.load(config.als_model_fp)
     except FileNotFoundError:
         create_als_training(config)
-        als = ALSModel.load(config.model_fp)
+        als = ALSModel.load(config.als_model_fp)
     return als
 

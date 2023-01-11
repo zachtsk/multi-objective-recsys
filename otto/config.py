@@ -40,7 +40,8 @@ class Config:
     click_embed_fp: str
     item_embed_fp: str
     user_embed_fp: str
-    model_fp: str
+    als_model_fp: str
+    w2v_model_fp: str
     nn_model_fp: str
 
 
@@ -69,7 +70,8 @@ class LocalConfig:
     item_embed_fp: str = os.path.join(data_dir, "item_embedding.parquet")
     user_embed_fp: str = os.path.join(data_dir, "user_embedding.parquet")
     click_embed_fp: str = os.path.join(data_dir, "click_embedding.parquet")
-    model_fp: str = os.path.join(data_dir, "als.model")
+    als_model_fp: str = os.path.join(data_dir, "als.model")
+    w2v_model_fp: str = os.path.join(data_dir, "w2v.model")
     nn_model_fp: str = os.path.join(data_dir, "neighbor.model")
 
 
@@ -110,5 +112,6 @@ class GoogleCloudConfig:
     item_embed_fp: str = os.path.join(data_dir, "item_embedding.parquet")
     user_embed_fp: str = os.path.join(data_dir, "user_embedding.parquet")
     click_embed_fp: str = os.path.join(data_dir, "click_embedding.parquet")
-    model_fp: str = os.path.join(data_dir, "als.model")
+    als_model_fp: str = os.path.join(data_dir, "als.model")
+    w2v_model_fp: str = os.path.join(data_dir, "w2v.model")
     nn_model_fp: str = os.path.join(data_dir, "neighbor.model")
