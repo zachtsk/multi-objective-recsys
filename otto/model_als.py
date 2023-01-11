@@ -1,17 +1,18 @@
 from pyspark.ml.recommendation import ALS, ALSModel
-
+from pyspark.sql import functions as F, SparkSession
 from otto.config import Config
-from pyspark.sql import functions as F
 
 
-def create_als_training(config: Config):
+def fit_als_model(config: Config):
+    spark = SparkSession.builder.appName("als_model").getOrCreate()
+
     # Create model training set
-    train = config.spark.read.parquet(config.train_fp)
-    test = config.spark.read.parquet(config.test_fp)
+    train = spark.read.parquet(config.train_fp)
+    test = spark.read.parquet(config.test_fp)
     df = train.unionAll(test)
 
     # Sample from available sessions for training
-    als_train_sessions = (
+    train_sessions = (
         df.select("session")
         .distinct()
         .sample(fraction=config.als_train_sample, seed=100)
@@ -19,7 +20,7 @@ def create_als_training(config: Config):
 
     # Create implicit ratings dataset
     als_train = (
-        df.join(als_train_sessions, on=["session"])
+        df.join(train_sessions, on=["session"])
         .select("session", "aid")
         .distinct()
         .withColumn("viewed", F.lit(1))
@@ -42,7 +43,6 @@ def load_als_model(config: Config) -> ALSModel:
     try:
         als = ALSModel.load(config.als_model_fp)
     except FileNotFoundError:
-        create_als_training(config)
+        fit_als_model(config)
         als = ALSModel.load(config.als_model_fp)
     return als
-
