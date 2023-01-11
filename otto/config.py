@@ -32,6 +32,16 @@ class Config:
     als_embeddings: int
     als_implicit_preferences: bool
 
+    #########################
+    # W2V Params
+    #########################
+    w2v_train_sample: float
+    w2v_embeddings: int
+    w2v_min_count: int
+    w2v_sentence_col: str
+    w2v_window_size: int
+    w2v_max_iter: int
+
     # Output files
     train_fp: str
     test_fp: str
@@ -77,9 +87,6 @@ class LocalConfig:
 
 @dataclass
 class GoogleCloudConfig:
-    # Spark session
-    spark = SparkSession.builder.appName("otto").getOrCreate()
-
     # Source/ files
     # TODO: change the default bucket path
     data_dir: str = os.getenv("GCP_DATA_BUCKET", "gs://otto-dataproc-gpu/otto/data")
@@ -103,6 +110,16 @@ class GoogleCloudConfig:
     als_rating_col: str = "viewed"
     als_embeddings: int = 8
     als_implicit_preferences: bool = True
+
+    #########################
+    # W2V Params
+    #########################
+    w2v_train_sample: float = 0.1
+    w2v_embeddings: int = 8
+    w2v_min_count: int = 1
+    w2v_sentence_col: str = "aid_ls"
+    w2v_window_size: int = 5
+    w2v_max_iter: int = 1
 
     # Output files
     train_fp: str = os.path.join(data_dir, "train.parquet")
