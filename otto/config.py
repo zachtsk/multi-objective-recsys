@@ -8,7 +8,7 @@ class Config:
     #########################
     # Source files
     #########################
-    data_dir: str
+    data_dir: str = str(Path(__file__).parent.parent / "data")
     train_jsonl_fp: str = os.path.join(data_dir, "train.jsonl")
     test_jsonl_fp: str = os.path.join(data_dir, "test.jsonl")
 
