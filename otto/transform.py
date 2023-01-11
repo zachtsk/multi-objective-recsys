@@ -98,7 +98,6 @@ def make_next_aid(df):
         .where("next_aid IS NOT NULL")
     )
 
-
 def normalize_data(config: Config, train_test: str, sample_size: int = None):
     """
     Takes in JSONL file format and creates normalized data table
