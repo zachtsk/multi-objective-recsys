@@ -37,8 +37,3 @@ Each `session` and `type` combination should appear on its own `session_type` ro
   * task is to predict the next `aid` clicked after the session truncation, as well as the the remaining `aids` that are added to carts and orders; you may predict up to 20 values for each session type
 
 * **sample_submission.csv (184 MB)** - a sample submission file in the correct format
-
-# Problems to solve
-
-* Big data processing
-* Training for multiple objectives
