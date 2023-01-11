@@ -2,6 +2,8 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
+from pyspark.sql import SparkSession
+
 
 @dataclass
 class Config:
@@ -19,6 +21,16 @@ class Config:
     size_sm: int
     size_med: int
     size_lg: int
+
+    #########################
+    # ALS Params
+    #########################
+    als_train_sample: float
+    als_user_col: str
+    als_item_col: str
+    als_rating_col: str
+    als_embeddings: int
+    als_implicit_preferences: bool
 
     # Output files
     train_fp: str
@@ -63,6 +75,9 @@ class LocalConfig:
 
 @dataclass
 class GoogleCloudConfig:
+    # Spark session
+    spark = SparkSession.builder.appName("otto").getOrCreate()
+
     # Source/ files
     # TODO: change the default bucket path
     data_dir: str = os.getenv("GCP_DATA_BUCKET", "gs://otto-dataproc-gpu/otto/data")
@@ -76,6 +91,16 @@ class GoogleCloudConfig:
     size_sm: int = 1_000
     size_med: int = 10_000
     size_lg: int = 100_000
+
+    #########################
+    # ALS Params
+    #########################
+    als_train_sample: float = 1.0
+    als_user_col: str = "session"
+    als_item_col: str = "aid"
+    als_rating_col: str = "viewed"
+    als_embeddings: int = 8
+    als_implicit_preferences: bool = True
 
     # Output files
     train_fp: str = os.path.join(data_dir, "train.parquet")
