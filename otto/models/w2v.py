@@ -100,7 +100,7 @@ def save_word_neighbors(config: Config, w2v: Word2Vec, n_neighbors: int = 20):
         w2v (Word2Vec) : A trained gensim word2vec model
     """
     # Create an Annoy index on the driver node
-    w2v_index = AnnoyIndex(32, "angular")
+    w2v_index = AnnoyIndex(config.w2v_vector_size, "angular")
 
     # Create index
     for idx, word in enumerate(w2v.wv.index_to_key):
