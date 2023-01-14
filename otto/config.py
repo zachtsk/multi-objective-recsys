@@ -23,7 +23,7 @@ class Config:
     size_lg: int
 
     #########################
-    # ALS Params
+    # ALS
     #########################
     als_train_sample: float
     als_user_col: str
@@ -31,27 +31,29 @@ class Config:
     als_rating_col: str
     als_embeddings: int
     als_implicit_preferences: bool
+    # Outputs
+    item_embed_fp: str
+    user_embed_fp: str
+    click_embed_fp: str
+    als_model_fp: str
+    nn_model_fp: str
 
     #########################
-    # W2V Params
+    # W2V
     #########################
     w2v_vector_size: int
     w2v_min_count: int
     w2v_window: int
     w2v_negative: int
+    # Outputs
+    w2v_item_embed_fp: str
+    w2v_neighbors_fp: str
 
     # Output files
     train_fp: str
     test_fp: str
     eval_fp: str
     features_fp: str
-    click_embed_fp: str
-    item_embed_fp: str
-    user_embed_fp: str
-    als_model_fp: str
-    w2v_item_embed_fp: str
-    w2v_neighbors_fp: str
-    nn_model_fp: str
 
 
 @dataclass
@@ -101,7 +103,7 @@ class GoogleCloudConfig:
     size_lg: int = 100_000
 
     #########################
-    # ALS Params
+    # ALS
     #########################
     als_train_sample: float = 1.0
     als_user_col: str = "session"
@@ -109,25 +111,26 @@ class GoogleCloudConfig:
     als_rating_col: str = "viewed"
     als_embeddings: int = 8
     als_implicit_preferences: bool = True
+    # Outputs
+    item_embed_fp: str = os.path.join(data_dir, "item_embedding.parquet")
+    user_embed_fp: str = os.path.join(data_dir, "user_embedding.parquet")
+    click_embed_fp: str = os.path.join(data_dir, "click_embedding.parquet")
+    als_model_fp: str = os.path.join(data_dir, "als.model")
+    nn_model_fp: str = os.path.join(data_dir, "neighbor.model")
 
     #########################
-    # W2V Params
+    # W2V
     #########################
     w2v_vector_size: int = 32
     w2v_min_count: int = 1
     w2v_window: int = 2
     w2v_negative: int = 8
+    # Outputs
+    w2v_item_embed_fp: str = os.path.join(data_dir, "w2v_item_embedding.parquet")
+    w2v_neighbors_fp: str = os.path.join(data_dir, "w2v_neighbors.parquet")
 
     # Output files
     train_fp: str = os.path.join(data_dir, "train.parquet")
     test_fp: str = os.path.join(data_dir, "test.parquet")
     eval_fp: str = os.path.join(data_dir, "eval.parquet")
     features_fp: str = os.path.join(data_dir, "features.parquet")
-    item_embed_fp: str = os.path.join(data_dir, "item_embedding.parquet")
-
-    user_embed_fp: str = os.path.join(data_dir, "user_embedding.parquet")
-    click_embed_fp: str = os.path.join(data_dir, "click_embedding.parquet")
-    als_model_fp: str = os.path.join(data_dir, "als.model")
-    w2v_item_embed_fp: str = os.path.join(data_dir, "w2v_item_embedding.parquet")
-    w2v_neighbors_fp: str = os.path.join(data_dir, "w2v_neighbors.parquet")
-    nn_model_fp: str = os.path.join(data_dir, "neighbor.model")
