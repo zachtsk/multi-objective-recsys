@@ -35,12 +35,10 @@ class Config:
     #########################
     # W2V Params
     #########################
-    w2v_train_sample: float
-    w2v_embeddings: int
+    w2v_vector_size: int
     w2v_min_count: int
-    w2v_sentence_col: str
-    w2v_window_size: int
-    w2v_max_iter: int
+    w2v_window: int
+    w2v_negative: int
 
     # Output files
     train_fp: str
@@ -51,7 +49,8 @@ class Config:
     item_embed_fp: str
     user_embed_fp: str
     als_model_fp: str
-    w2v_model_fp: str
+    w2v_item_embed_fp: str
+    w2v_neighbors_fp: str
     nn_model_fp: str
 
 
@@ -114,12 +113,10 @@ class GoogleCloudConfig:
     #########################
     # W2V Params
     #########################
-    w2v_train_sample: float = 0.1
-    w2v_embeddings: int = 8
+    w2v_vector_size: int = 32
     w2v_min_count: int = 1
-    w2v_sentence_col: str = "aid_ls"
-    w2v_window_size: int = 5
-    w2v_max_iter: int = 1
+    w2v_window: int = 2
+    w2v_negative: int = 8
 
     # Output files
     train_fp: str = os.path.join(data_dir, "train.parquet")
@@ -127,8 +124,10 @@ class GoogleCloudConfig:
     eval_fp: str = os.path.join(data_dir, "eval.parquet")
     features_fp: str = os.path.join(data_dir, "features.parquet")
     item_embed_fp: str = os.path.join(data_dir, "item_embedding.parquet")
+
     user_embed_fp: str = os.path.join(data_dir, "user_embedding.parquet")
     click_embed_fp: str = os.path.join(data_dir, "click_embedding.parquet")
     als_model_fp: str = os.path.join(data_dir, "als.model")
-    w2v_model_fp: str = os.path.join(data_dir, "w2v.model")
+    w2v_item_embed_fp: str = os.path.join(data_dir, "w2v_item_embedding.parquet")
+    w2v_neighbors_fp: str = os.path.join(data_dir, "w2v_neighbors.parquet")
     nn_model_fp: str = os.path.join(data_dir, "neighbor.model")
