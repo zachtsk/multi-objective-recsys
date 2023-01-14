@@ -45,6 +45,8 @@ class Config:
     w2v_min_count: int
     w2v_window: int
     w2v_negative: int
+    w2v_ns_exponent: float
+    w2v_sg: int
     # Outputs
     w2v_item_embed_fp: str
     w2v_neighbors_fp: str
@@ -73,17 +75,40 @@ class LocalConfig:
     size_med: int = 10_000
     size_lg: int = 100_000
 
+    #########################
+    # ALS
+    #########################
+    als_train_sample: float = 1.0
+    als_user_col: str = "session"
+    als_item_col: str = "aid"
+    als_rating_col: str = "viewed"
+    als_embeddings: int = 8
+    als_implicit_preferences: bool = True
+    # Outputs
+    item_embed_fp: str = os.path.join(data_dir, "item_embedding.parquet")
+    user_embed_fp: str = os.path.join(data_dir, "user_embedding.parquet")
+    click_embed_fp: str = os.path.join(data_dir, "click_embedding.parquet")
+    als_model_fp: str = os.path.join(data_dir, "als.model")
+    nn_model_fp: str = os.path.join(data_dir, "neighbor.model")
+
+    #########################
+    # W2V
+    #########################
+    w2v_vector_size: int = 64
+    w2v_min_count: int = 1
+    w2v_window: int = 3
+    w2v_negative: int = 8
+    w2v_ns_exponent: float = 0.2
+    w2v_sg: int = 1
+    # Outputs
+    w2v_item_embed_fp: str = os.path.join(data_dir, "w2v_item_embedding.parquet")
+    w2v_neighbors_fp: str = os.path.join(data_dir, "w2v_neighbors.parquet")
+
     # Output files
     train_fp: str = os.path.join(data_dir, "train.parquet")
     test_fp: str = os.path.join(data_dir, "test.parquet")
     eval_fp: str = os.path.join(data_dir, "eval.parquet")
     features_fp: str = os.path.join(data_dir, "features.parquet")
-    item_embed_fp: str = os.path.join(data_dir, "item_embedding.parquet")
-    user_embed_fp: str = os.path.join(data_dir, "user_embedding.parquet")
-    click_embed_fp: str = os.path.join(data_dir, "click_embedding.parquet")
-    als_model_fp: str = os.path.join(data_dir, "als.model")
-    w2v_model_fp: str = os.path.join(data_dir, "w2v.model")
-    nn_model_fp: str = os.path.join(data_dir, "neighbor.model")
 
 
 @dataclass
@@ -121,10 +146,12 @@ class GoogleCloudConfig:
     #########################
     # W2V
     #########################
-    w2v_vector_size: int = 32
+    w2v_vector_size: int = 64
     w2v_min_count: int = 1
-    w2v_window: int = 5
+    w2v_window: int = 3
     w2v_negative: int = 8
+    w2v_ns_exponent: float = 0.2
+    w2v_sg: int = 1
     # Outputs
     w2v_item_embed_fp: str = os.path.join(data_dir, "w2v_item_embedding.parquet")
     w2v_neighbors_fp: str = os.path.join(data_dir, "w2v_neighbors.parquet")
