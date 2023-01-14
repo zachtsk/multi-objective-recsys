@@ -153,14 +153,6 @@ def normalize_data(config: Config, train_test: str, sample_size: int = None):
                 when event_type = 'orders' then 3 
             end"""))
 
-    # Create event weights
-    df = df.withColumn("event_weight", F.expr(f"""
-            case 
-                when event_type = 'clicks' then {config.clicks_weight} 
-                when event_type = 'carts'  then {config.carts_weight}
-                when event_type = 'orders' then {config.orders_weight}
-            end"""))
-
     df.write.parquet(out_fp, mode="overwrite")
 
 
