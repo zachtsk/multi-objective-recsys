@@ -106,8 +106,6 @@ def save_word_neighbors(config: Config, w2v: Word2Vec):
     for idx, word in enumerate(w2v.wv.index_to_key):
         embeddings = w2v.wv[idx]
         w2v_index.add_item(word, embeddings)
-        if idx % 500_000 == 0:
-            print(f"Processed {idx:,d}")
 
     # Build index
     w2v_index.build(10)
