@@ -63,6 +63,8 @@ def fit_w2v_model(config: Config, df: List[List[int]]):
         window=config.w2v_window,
         min_count=config.w2v_min_count,
         negative=config.w2v_negative,
+        ns_exponent=config.w2v_ns_exponent,
+        sg=config.w2v_sg,
         workers=cores,
     )
     return w2v
@@ -100,7 +102,7 @@ def save_word_neighbors(config: Config, w2v: Word2Vec, n_neighbors: int = 20):
         w2v (Word2Vec) : A trained gensim word2vec model
     """
     # Create an Annoy index on the driver node
-    w2v_index = AnnoyIndex(config.w2v_vector_size, "angular")
+    w2v_index = AnnoyIndex(config.w2v_vector_size, "euclidean")
 
     # Create index
     for idx, word in enumerate(w2v.wv.index_to_key):
@@ -108,7 +110,7 @@ def save_word_neighbors(config: Config, w2v: Word2Vec, n_neighbors: int = 20):
         w2v_index.add_item(word, embeddings)
 
     # Build index
-    w2v_index.build(10)
+    w2v_index.build(32)
 
     # Save neighbors
     word_neighbors = []
