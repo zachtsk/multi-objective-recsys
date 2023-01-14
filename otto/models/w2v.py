@@ -90,7 +90,7 @@ def save_word_embeddings(config: Config, w2v: Word2Vec):
     w2v_embeds_df.write.parquet(config.w2v_item_embed_fp, mode="overwrite")
 
 
-def save_word_neighbors(config: Config, w2v: Word2Vec):
+def save_word_neighbors(config: Config, w2v: Word2Vec, n_neighbors: int = 20):
     """
     This function saves the word neighbors of each word in the w2v model, by creating an Annoy index and saving the
     neighbors to a spark dataframe.
@@ -113,7 +113,7 @@ def save_word_neighbors(config: Config, w2v: Word2Vec):
     # Save neighbors
     word_neighbors = []
     for idx, word in enumerate(w2v.wv.index_to_key):
-        r = w2v_index.get_nns_by_item(word, 20)
+        r = w2v_index.get_nns_by_item(word, n_neighbors)
         word_neighbors.append([word, r])
 
     # Save to spark dataframe
