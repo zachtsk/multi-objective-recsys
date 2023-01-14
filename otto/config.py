@@ -123,7 +123,7 @@ class GoogleCloudConfig:
     #########################
     w2v_vector_size: int = 32
     w2v_min_count: int = 1
-    w2v_window: int = 2
+    w2v_window: int = 5
     w2v_negative: int = 8
     # Outputs
     w2v_item_embed_fp: str = os.path.join(data_dir, "w2v_item_embedding.parquet")
