@@ -17,6 +17,9 @@ class Config:
     #########################
     # Normalized Files
     #########################
+    clicks_weight: float
+    carts_weight: float
+    orders_weight: float
     # Sample Size
     size_sm: int
     size_med: int
@@ -98,6 +101,9 @@ class GoogleCloudConfig:
     # Normalized Files
     #########################
     # Sample Size
+    clicks_weight: float = 1.0
+    carts_weight: float = 6.0
+    orders_weight: float = 3.0
     size_sm: int = 1_000
     size_med: int = 10_000
     size_lg: int = 100_000
