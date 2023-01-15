@@ -50,6 +50,7 @@ class Config:
     # Outputs
     w2v_item_embed_fp: str
     w2v_neighbors_fp: str
+    w2v_clicks_fp: str
 
     # Output files
     train_fp: str
@@ -103,6 +104,7 @@ class LocalConfig:
     # Outputs
     w2v_item_embed_fp: str = os.path.join(data_dir, "w2v_item_embedding.parquet")
     w2v_neighbors_fp: str = os.path.join(data_dir, "w2v_neighbors.parquet")
+    w2v_clicks_fp: str = os.path.join(data_dir, "w2v_clicks.parquet")
 
     # Output files
     train_fp: str = os.path.join(data_dir, "train.parquet")
