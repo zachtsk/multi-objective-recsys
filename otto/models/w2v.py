@@ -14,7 +14,7 @@ from otto.config import Config
 # 5. Build Nearest Neighbors dataset
 
 
-def materialize_sentences(config: Config, sample: int = None):
+def materialize_sentences(config: Config, sample: int = None) -> List[List[int]]:
     """
     Return a list of lists of items viewed in each session.
     It also allows the user to sample the data if desired.
@@ -43,7 +43,7 @@ def materialize_sentences(config: Config, sample: int = None):
         return sentences.select("aid_ls").rdd.map(lambda x: x[0]).collect()
 
 
-def fit_w2v_model(config: Config, df: List[List[int]]):
+def fit_w2v_model(config: Config, df: List[List[int]]) -> Word2Vec:
     """
     This function takes in a list of lists of integers, which represent the items viewed in each session, and a Config object containing the hyperparameters for the Word2Vec model.
     It fits a Word2Vec model to the input data and returns the trained model.
@@ -70,7 +70,7 @@ def fit_w2v_model(config: Config, df: List[List[int]]):
     return w2v
 
 
-def save_word_embeddings(config: Config, w2v: Word2Vec):
+def save_word_embeddings(config: Config, w2v: Word2Vec) -> None:
     """
     This function saves the embeddings of the words in a trained Word2Vec model to a parquet file.
 
@@ -92,7 +92,7 @@ def save_word_embeddings(config: Config, w2v: Word2Vec):
     w2v_embeds_df.write.parquet(config.w2v_item_embed_fp, mode="overwrite")
 
 
-def save_word_neighbors(config: Config, w2v: Word2Vec, n_neighbors: int = 20):
+def save_word_neighbors(config: Config, w2v: Word2Vec, n_neighbors: int = 20) -> None:
     """
     This function saves the word neighbors of each word in the w2v model, by creating an Annoy index and saving the
     neighbors to a spark dataframe.
