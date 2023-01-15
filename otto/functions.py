@@ -33,3 +33,34 @@ def cosine_similarity(df, col1, col2):
     cosine = f"{dot} / ({norm1} * {norm2})"
 
     return df.withColumn("cosine", F.expr(cosine))
+
+
+def euclidean_distance(df, col1, col2):
+    """
+    This function calculates the euclidean distance between two columns of a DataFrame.
+    Euclidean distance is a measure of the straight-line distance between two points in Euclidean space.
+
+    Steps:
+    - The function first calculates the difference between the two columns, which is a measure of how dissimilar the two columns are.
+    - Then it squares the difference and accumulates the value
+    - Finally, it calculates the euclidean distance by taking the square root of the accumulated value.
+
+    Note:
+        - col1 and col2 must be arrays. If they are in vector format, use the `vector_to_array` function
+        to convert them to arrays.
+        e.g.
+        ```
+        from pyspark.ml.functions import vector_to_array
+        df.withColumn(col1, vector_to_array(col1)
+        ```
+    """
+    # calculating the difference between the two embeddings
+    difference = f"transform(arrays_zip({col1}, {col2}), x -> x.{col1} - x.{col2})"
+
+    # squaring the difference and accumulating the value
+    square = f"aggregate({difference}, 0D, (acc, x) -> acc + (x * x))"
+
+    # taking the square root of the accumulated value
+    euclidean = f"sqrt({square})"
+
+    return df.withColumn("euclidean_distance", F.expr(euclidean))
